@@ -109,7 +109,8 @@ From your current page, just click on Policies to get started.
 - Next, choose which resources the policy should apply to by clicking on Target resources > then select Resources (formerly Cloud Apps).
 - Pick the resources you want to include or exclude, but be careful not to lock yourself out, unless someone else has similar or higher permissions to access your org’s resources.
 
-  <img width="975" height="735" alt="image" src="https://github.com/user-attachments/assets/8ff2eeb2-f7b4-4265-9977-616cd6c32e9b" />
+<img width="975" height="712" alt="image" src="https://github.com/user-attachments/assets/4c970ecd-4b9c-4932-bf2a-485a75caf2a4" />
+
 
 - Now go to Network, toggle Yes to turn on the configuration, then click Select Networks and Locations.
 - Choose the custom location we set up earlier, then click Save.
@@ -122,7 +123,13 @@ From your current page, just click on Policies to get started.
 
 <img width="954" height="686" alt="image" src="https://github.com/user-attachments/assets/193a0977-8dcc-4c5d-b34a-c61c79ae5aea" />
 
-### Step 3: Set the Policy Action
+- You can also set the policy to apply only to certain device platforms. For example, you can allow access only from authorized devices like Windows or macOS, and block access from mobile phones.
+#### Feel free to explore other settings in the Conditions section based on what your organization needs.
+
+<img width="975" height="482" alt="image" src="https://github.com/user-attachments/assets/dea7091f-0785-435f-9641-17779f6faef3" />
+
+
+### Step 4: Set the Policy Action
 
 - Now we need to tell the policy what action to take, either to block access or grant access.
 - Since this is for our remote workers in a different region, I’ll go with Grant Access, but I’ll also require them to do extra authentication by selecting Require MFA.
@@ -156,6 +163,10 @@ Now let’s proceed to create a Policy to reflect this action. I have specified 
 - For the Network section, select the custom Named Location we created in Step 1 (called Blocked Risky Locations), and make sure to exclude the trusted location already set up in your tenant.
 - Also, don’t forget to toggle the Configure button to Yes.
 
+
+<img width="975" height="783" alt="image" src="https://github.com/user-attachments/assets/0996c45d-7908-419e-aa1b-d8da8ae5a352" />
+
+
 <img width="975" height="389" alt="image" src="https://github.com/user-attachments/assets/b864d4b2-7277-4a3d-aa2a-3a19f8026fd5" />
 
 <img width="975" height="802" alt="image" src="https://github.com/user-attachments/assets/6fd95085-0fcb-4677-bb4b-85681bcab8d0" />
@@ -173,9 +184,35 @@ Now let’s proceed to create a Policy to reflect this action. I have specified 
 
 ## Results
 
+### Result 1
+
+- It is highly recommended to test your policy before rolling it out fully to make sure everything works as expected.
+- I tried accessing the organization’s resources using one of the test accounts included in the initial setup, and here’s the result I got (based on the Location and MFA based Policy):
+
+<img width="975" height="752" alt="image" src="https://github.com/user-attachments/assets/66dd3fc4-cb67-449c-8796-f99b0f688fb2" />
+
+##### Note: Prior to enabling the policy, I could access the Customer Support account without MFA, since I hadn’t set it up yet.
+-  Once the policy was active, I was prompted to set up MFA. After approving the sign-in through the Authenticator app, I was also prompted to share my location.
+- This confirms that the policy is working as expected. If the shared location doesn’t match the allowed locations in the policy, access will be blocked/denied.
+
+<img width="975" height="1121" alt="image" src="https://github.com/user-attachments/assets/618b0c1c-7a30-4f35-9da9-7e59f090cfec" />
+
+<img width="975" height="810" alt="image" src="https://github.com/user-attachments/assets/801c06a4-e018-4962-abee-5ffb62296f97" />
+
+
+### Result 2
+I tried accessing the organization’s resources from one of the restricted regions and my access was denied (Based on the Blocked Risky Location Policy)
+
+<img width="908" height="917" alt="image" src="https://github.com/user-attachments/assets/aeb56bd9-4950-48d4-9e25-4e1201cb5ed1" />
+
+<img width="975" height="603" alt="image" src="https://github.com/user-attachments/assets/6abac85a-4aec-4ca1-8b09-c8e70cded077" />
+
+
+### Summary of Results
 - Users from risky or blocked locations are denied access
 - Remote users from trusted regions must use MFA and compliant devices
 - Policies reflect Zero Trust principles: "Never trust, always verify"
+
 
 ##  Security Concepts Demonstrated
 
